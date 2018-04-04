@@ -20,9 +20,8 @@ public class SelectionSortTest {
 
     @Test
     public void sortingTest() {
-        Integer[] choasArr = {2,1,23,3413,213,45,546,92};
-        selectionSorting.sort(choasArr);
-        commonUtils.printArr(choasArr);
+        Integer[] randomArrs = commonUtils.generateRandomArrs(10000, 1, 100000);
+        selectionSorting.sort(randomArrs);
     }
 
 }

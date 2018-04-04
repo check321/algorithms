@@ -1,5 +1,6 @@
 package net.check321.algorithms.sorting.basic;
 
+import net.check321.algorithms.annotations.Profiler;
 import net.check321.algorithms.sorting.BaseSortable;
 import net.check321.algorithms.sorting.Sortable;
 import org.springframework.stereotype.Component;
@@ -7,10 +8,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class SelectionSorting extends BaseSortable implements Sortable {
 
-    private SelectionSorting() {
-    }
-
     @Override
+    @Profiler
     public void sort(Comparable[] arrs) {
 
         for (int i = 0; i < arrs.length; i++) {

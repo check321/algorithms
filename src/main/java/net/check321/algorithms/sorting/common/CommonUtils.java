@@ -26,8 +26,32 @@ public class CommonUtils {
      *
      * @param arrs
      */
-    public void printArr(Object[] arrs) {
-        log.info("Sorting Result: {}",(Object) arrs);
+    public void printArr(Object[] arrs,String title) {
+        log.info("-----{}-----: {}", title,(Object) arrs);
+    }
+
+
+    /**
+     * 范围内生成随机元素且固定大小的数组 [rangeL-rangeR]
+     * @param size 数组大小
+     * @param rangeL 元素左区间
+     * @param rangeR 元素右区间
+     * @return
+     */
+    public Integer[] generateRandomArrs(int size, int rangeL, int rangeR) {
+
+        if (rangeR < rangeL) {
+            rangeL = rangeL ^ rangeR;
+            rangeR = rangeL ^ rangeR;
+            rangeL = rangeL ^ rangeR;
+        }
+
+        Integer[] arrs = new Integer[size];
+        for (int i = 0; i < size; i++) {
+            // 生成区间随机数 [0.0-1.0] * ([rangeL-rangeR] + offset)
+            arrs[i] = new Integer((int) (Math.random() * (rangeR - rangeL + 1) + rangeL));
+        }
+        return arrs;
     }
 
 }
