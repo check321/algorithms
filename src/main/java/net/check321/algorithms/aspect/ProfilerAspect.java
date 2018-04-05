@@ -28,17 +28,32 @@ public class ProfilerAspect {
 
     @Before(value = "methodCutPoint(profiler) && args(arrs)")
     public void beforeCall(JoinPoint joinPoint, Profiler profiler, Object[] arrs) {
+        log.info("====================== Method Start ========================");
         if (profiler.logging()) {
             log.info("---- Before Sorting ---- : {}", (Object) arrs);
         }
         timer.set(System.currentTimeMillis());
     }
-    
+
     @After(value = "methodCutPoint(profiler) && args(arrs)")
-    public void afterCall(JoinPoint joinPoint, Profiler profiler, Object[] arrs){
+    public void afterCall(JoinPoint joinPoint, Profiler profiler, Comparable[] arrs) {
+
+        log.info("---- Profiling Result ---- : Spend [{}ms] on [{}]", System.currentTimeMillis() - timer.get(), joinPoint.getSignature().getDeclaringTypeName());
+
         if (profiler.logging()) {
             log.info("---- Sorting Result ---- : {}", (Object) arrs);
         }
-        log.info("---- Profiling Result ---- : Spend [{}ms] on [{}]",System.currentTimeMillis() - timer.get(),joinPoint.getSignature().getDeclaringTypeName());
+
+        if (profiler.verifiable()) {
+            boolean isSorted = true;
+            for (int i = 0; i < arrs.length - 1; i++) {
+                if (arrs[i].compareTo(arrs[i + 1]) > 0) {
+                    isSorted = false;
+                    break;
+                }
+            }
+            log.info("---- Verify Result ---- : [{}]", isSorted);
+        }
+
     }
 }

@@ -6,7 +6,7 @@ import net.check321.algorithms.sorting.Sortable;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SelectionSorting extends BaseSortable implements Sortable {
+public class SelectionSort extends BaseSortable implements Sortable {
 
     @Override
     @Profiler

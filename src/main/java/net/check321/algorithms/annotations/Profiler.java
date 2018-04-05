@@ -19,4 +19,11 @@ public @interface Profiler {
      * @return 日志输出开关
      */
     boolean logging() default true;
+
+
+    /**
+     * 验证数组结果开关
+     * @return
+     */
+    boolean verifiable() default true;
 }
