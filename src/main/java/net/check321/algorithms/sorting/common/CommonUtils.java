@@ -54,4 +54,29 @@ public class CommonUtils {
         return arrs;
     }
 
+    /**
+     * 生成近似有序的数组
+     * @param size 数组大小
+     * @param swapTimes 交换次数 该次数越大数组有序性越低
+     * @return
+     */
+    public Integer[] generateNearlyOrderedArrs(int size,int swapTimes){
+
+        // 完全有序数组
+        Integer[] arrs = new Integer[size];
+        for (int i = 0; i < size; i++) {
+            arrs[i] = i;
+        }
+
+        // 随机交换swapTimes次元素
+        for (int i = 0; i < swapTimes; i++) {
+            int j = (int) (Math.random() * size);
+            int k = (int) (Math.random() * size);
+
+            this.swap(arrs,j,k);
+        }
+
+        return arrs;
+    }
+
 }
