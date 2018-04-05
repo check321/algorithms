@@ -20,14 +20,26 @@ public class InsertionSort extends BaseSortable implements Sortable {
 
         // 插入排序向前比较，故从第二元素开始
         for (int i = 1; i < arrs.length; i++) {
-            for (int j = i; j > 0 && arrs[j].compareTo(arrs[j -1]) < 0; j--) {
-             /*   if(arrs[j].compareTo(arrs[i]) < 0){
+
+       /*     for (int j = i; j > 0 && arrs[j].compareTo(arrs[j -1]) < 0; j--) {
+             *//* ver 1.0
+                if(arrs[j].compareTo(arrs[i]) < 0){
                     commonUtils.swap(arrs,i,j);
                 }else{
                     break;
-                }*/
+                }*//*
                 commonUtils.swap(arrs, j, j-1);
+            }*/
+
+          // ver 3.0 sorted element
+            Comparable e = arrs[i];
+
+            // ver 3.0 correct index
+            int j = i;
+            for (; j > 0 && e.compareTo(arrs[j-1]) < 0; j--) {
+                arrs[j] = arrs[j-1];
             }
+            arrs[j] = e;
         }
     }
 }

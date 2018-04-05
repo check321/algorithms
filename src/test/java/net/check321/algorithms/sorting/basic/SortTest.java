@@ -29,7 +29,7 @@ public class SortTest {
     @Test
     public void sortingTest() {
         Integer[] randomArrs = commonUtils.generateRandomArrs(10000, 1, 10000);
-        Integer[] randomArrs1 = Arrays.copyOf(randomArrs,randomArrs.length);
+        Integer[] randomArrs1 = Arrays.copyOf(randomArrs, randomArrs.length);
 
         selectionSort.sort(randomArrs);
         insertionSort.sort(randomArrs1);
