@@ -28,18 +28,23 @@ public class SortTest {
     private Sortable shellSort;
 
     @Autowired
+    @Qualifier("mergeSort")
+    private Sortable mergeSort;
+
+    @Autowired
     private CommonUtils commonUtils;
 
     @Test
     public void sortingTest() {
-        Integer[] randomArrs = commonUtils.generateNearlyOrderedArrs(10000, 10);
-        // Integer[] randomArrs = commonUtils.generateRandomArrs(10000, 1,10000);
+        // Integer[] randomArrs = commonUtils.generateNearlyOrderedArrs(10000, 10);
+        Integer[] randomArrs = commonUtils.generateRandomArrs(10000, 1, 10000);
         Integer[] randomArrs1 = Arrays.copyOf(randomArrs, randomArrs.length);
         Integer[] randomArrs2 = Arrays.copyOf(randomArrs, randomArrs.length);
 
         selectionSort.sort(randomArrs);
         insertionSort.sort(randomArrs1);
-        shellSort.sort(randomArrs2);
+        mergeSort.sort(randomArrs2);
+//        shellSort.sort(randomArrs2);
     }
 
 }
