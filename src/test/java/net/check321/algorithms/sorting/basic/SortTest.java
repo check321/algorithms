@@ -36,18 +36,26 @@ public class SortTest {
     private Sortable quickSort;
 
     @Autowired
+    @Qualifier("quickSortDoubleWays")
+    private Sortable quickSortDoubleWays;
+
+    @Autowired
     private CommonUtils commonUtils;
 
     @Test
     public void sortingTest() {
-//        Integer[] randomArrs = commonUtils.generateNearlyOrderedArrs(20000, 10);
-        Integer[] randomArrs = commonUtils.generateRandomArrs(20000, 1, 10000);
-//        Integer[] randomArrs1 = Arrays.copyOf(randomArrs, randomArrs.length);
+        Integer[] randomArrs = commonUtils.generateNearlyOrderedArrs(20000, 10);
+//        Integer[] randomArrs = commonUtils.generateRandomArrs(20000, 1, 10000);
+        Integer[] randomArrs1 = Arrays.copyOf(randomArrs, randomArrs.length);
         Integer[] randomArrs2 = Arrays.copyOf(randomArrs, randomArrs.length);
+        Integer[] randomArrs3 = Arrays.copyOf(randomArrs, randomArrs.length);
+        Integer[] randomArrs4 = Arrays.copyOf(randomArrs, randomArrs.length);
 
-        quickSort.sort(randomArrs);
-//        insertionSort.sort(randomArrs1);
+        selectionSort.sort(randomArrs3);
+        insertionSort.sort(randomArrs1);
         mergeSort.sort(randomArrs2);
+        quickSort.sort(randomArrs);
+        quickSortDoubleWays.sort(randomArrs4);
 //        shellSort.sort(randomArrs2);
     }
 
