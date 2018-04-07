@@ -32,17 +32,21 @@ public class SortTest {
     private Sortable mergeSort;
 
     @Autowired
+    @Qualifier("quickSort")
+    private Sortable quickSort;
+
+    @Autowired
     private CommonUtils commonUtils;
 
     @Test
     public void sortingTest() {
-        Integer[] randomArrs = commonUtils.generateNearlyOrderedArrs(20000, 10);
-//        Integer[] randomArrs = commonUtils.generateRandomArrs(20000, 1, 10000);
-        Integer[] randomArrs1 = Arrays.copyOf(randomArrs, randomArrs.length);
+//        Integer[] randomArrs = commonUtils.generateNearlyOrderedArrs(20000, 10);
+        Integer[] randomArrs = commonUtils.generateRandomArrs(20000, 1, 10000);
+//        Integer[] randomArrs1 = Arrays.copyOf(randomArrs, randomArrs.length);
         Integer[] randomArrs2 = Arrays.copyOf(randomArrs, randomArrs.length);
 
-        selectionSort.sort(randomArrs);
-        insertionSort.sort(randomArrs1);
+        quickSort.sort(randomArrs);
+//        insertionSort.sort(randomArrs1);
         mergeSort.sort(randomArrs2);
 //        shellSort.sort(randomArrs2);
     }
