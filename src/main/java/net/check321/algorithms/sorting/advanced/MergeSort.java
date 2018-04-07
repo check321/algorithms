@@ -1,8 +1,11 @@
 package net.check321.algorithms.sorting.advanced;
 
+import lombok.extern.slf4j.Slf4j;
 import net.check321.algorithms.annotations.Profiler;
 import net.check321.algorithms.sorting.BaseSortable;
 import net.check321.algorithms.sorting.Sortable;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
@@ -14,12 +17,21 @@ import java.util.Arrays;
  * @date 2018/4/6 20:36
  */
 @Component
+@Slf4j
 public class MergeSort extends BaseSortable implements Sortable {
+
+    @Autowired
+    @Qualifier("insertionSort")
+    private Sortable insertionSort;
 
     @Override
     @Profiler
     public void sort(Comparable[] arrs) {
-        this.sort(arrs, 0, arrs.length - 1);
+        this.mergeSort(arrs, 0, arrs.length - 1);
+    }
+
+    @Override
+    public void sort(Comparable[] arrs, int l, int r) {
     }
 
 
@@ -30,7 +42,13 @@ public class MergeSort extends BaseSortable implements Sortable {
      * @param l    头元素角标
      * @param r    尾元素角标
      */
-    private void sort(Comparable[] arrs, int l, int r) {
+    private void mergeSort(Comparable[] arrs, int l, int r) {
+
+        // 数组不大时可用Insertion-Sort提升性能
+        if ((r - l) <= 15) {
+            insertionSort.sort(arrs, l, r);
+            return;
+        }
 
         // 跳出递归条件
         if (l >= r) {
@@ -40,11 +58,13 @@ public class MergeSort extends BaseSortable implements Sortable {
         // 中间点
         int mid = (l + r) / 2;
         // 分治左侧
-        this.sort(arrs, l, mid);
+        this.mergeSort(arrs, l, mid);
         // 分治右侧
-        this.sort(arrs, mid + 1, r);
+        this.mergeSort(arrs, mid + 1, r);
         // 归并
-        this.merge(arrs, l, mid, r);
+        if (arrs[mid].compareTo(arrs[mid + 1]) > 0) {
+            this.merge(arrs, l, mid, r);
+        }
     }
 
 
@@ -86,6 +106,13 @@ public class MergeSort extends BaseSortable implements Sortable {
                 j++;
             }
         }
+    }
+
+    public static void main(String[] args) {
+        MergeSort sorter = new MergeSort();
+        Integer[] arrs = {8, 7, 6, 5, 4, 3, 2, 1};
+        sorter.sort(arrs);
+        log.info("sorted arrs: {}", (Object) arrs);
     }
 
 }

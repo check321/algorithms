@@ -29,6 +29,7 @@ public class ProfilerAspect {
     @Before(value = "methodCutPoint(profiler) && args(arrs)")
     public void beforeCall(JoinPoint joinPoint, Profiler profiler, Object[] arrs) {
         log.info("====================== Method Start ========================");
+        log.info("---- Arrays Size ---- : [{}]", arrs.length);
         if (profiler.logging()) {
             log.info("---- Before Sorting ---- : {}", (Object) arrs);
         }

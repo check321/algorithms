@@ -1,5 +1,6 @@
 package net.check321.algorithms.sorting.basic;
 
+import lombok.extern.slf4j.Slf4j;
 import net.check321.algorithms.annotations.Profiler;
 import net.check321.algorithms.sorting.BaseSortable;
 import net.check321.algorithms.sorting.Sortable;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
  * @date 2018/4/5 11:14
  */
 @Component
+@Slf4j
 public class InsertionSort extends BaseSortable implements Sortable {
 
     @Override
@@ -31,15 +33,42 @@ public class InsertionSort extends BaseSortable implements Sortable {
                 commonUtils.swap(arrs, j, j-1);
             }*/
 
-          // ver 3.0 sorted element
+            // ver 3.0 sorted element
             Comparable e = arrs[i];
 
             // ver 3.0 correct index
             int j = i;
-            for (; j > 0 && e.compareTo(arrs[j-1]) < 0; j--) {
-                arrs[j] = arrs[j-1];
+            for (; j > 0 && e.compareTo(arrs[j - 1]) < 0; j--) {
+                arrs[j] = arrs[j - 1];
             }
             arrs[j] = e;
         }
+    }
+
+
+    /**
+     * 对数组[l...r]区间进行排序
+     *
+     * @param arrs
+     * @param l
+     * @param r
+     */
+    public void sort(Comparable[] arrs, int l, int r) {
+        for (int i = l + 1; i <= r; i++) {
+            Comparable e = arrs[i];
+
+            int j = i;
+            for (; j > l && e.compareTo(arrs[j - 1]) < 0; j--) {
+                    arrs[j] = arrs[j - 1];
+            }
+            arrs[j] = e;
+        }
+    }
+
+    public static void main(String[] args) {
+        Sortable sorter = new InsertionSort();
+        Integer[] arrs = {8, 7, 6, 5, 4, 3, 2, 1};
+        sorter.sort(arrs, 6, 7);
+        log.info("sorted arrs: {}", (Object) arrs);
     }
 }

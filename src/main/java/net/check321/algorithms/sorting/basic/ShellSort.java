@@ -43,6 +43,10 @@ public class ShellSort extends BaseSortable implements Sortable {
         }
     }
 
+    @Override
+    public void sort(Comparable[] arrs, int l, int r) {
+    }
+
     public static void main(String[] args) {
         Integer[] arrs = {7,6,5,3,2,1,8,9};
         ShellSort shellSort = new ShellSort();

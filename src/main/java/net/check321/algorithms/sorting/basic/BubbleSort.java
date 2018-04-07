@@ -8,4 +8,9 @@ public class BubbleSort extends BaseSortable implements Sortable{
     @Override
     public void sort(Comparable[] arrs) {
     }
+
+    @Override
+    public void sort(Comparable[] arrs, int l, int r) {
+
+    }
 }

@@ -18,7 +18,7 @@ public @interface Profiler {
     /**
      * @return 日志输出开关
      */
-    boolean logging() default true;
+    boolean logging() default false;
 
 
     /**

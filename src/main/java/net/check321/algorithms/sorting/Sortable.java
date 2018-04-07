@@ -9,4 +9,6 @@ package net.check321.algorithms.sorting;
 public interface Sortable {
 
     void sort(Comparable[] arrs);
+
+    void sort(Comparable[] arrs,int l,int r);
 }

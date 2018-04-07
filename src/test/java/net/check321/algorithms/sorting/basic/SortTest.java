@@ -36,8 +36,8 @@ public class SortTest {
 
     @Test
     public void sortingTest() {
-        // Integer[] randomArrs = commonUtils.generateNearlyOrderedArrs(10000, 10);
-        Integer[] randomArrs = commonUtils.generateRandomArrs(10000, 1, 10000);
+        Integer[] randomArrs = commonUtils.generateNearlyOrderedArrs(20000, 10);
+//        Integer[] randomArrs = commonUtils.generateRandomArrs(20000, 1, 10000);
         Integer[] randomArrs1 = Arrays.copyOf(randomArrs, randomArrs.length);
         Integer[] randomArrs2 = Arrays.copyOf(randomArrs, randomArrs.length);
 
