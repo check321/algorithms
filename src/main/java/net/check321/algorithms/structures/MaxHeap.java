@@ -3,6 +3,8 @@ package net.check321.algorithms.structures;
 import lombok.extern.slf4j.Slf4j;
 import net.check321.algorithms.sorting.common.CommonUtils;
 
+import javax.validation.constraints.Max;
+
 /**
  * @author check321
  * @title Max-Heap 最大堆实现
@@ -29,6 +31,31 @@ public class MaxHeap<T extends Comparable> {
         this.count = 0;
         this.capacity = capacity;
         commonUtils = new CommonUtils();
+    }
+
+    /**
+     * Heap-Sort
+     * @param arrs
+     */
+    public MaxHeap(T[] arrs){
+        commonUtils = new CommonUtils();
+
+        int n = arrs.length;
+        data = (T[])new Comparable[n + 1];
+        capacity = n;
+
+        for (int i = 0; i < n; i++) {
+            // Max-Heap从1开始
+            data[i + 1] = arrs[i];
+        }
+        count = n;
+
+        // Heapify
+        // 最后一个非叶子节点: n/2
+        for (int i = n/2; i >= 1 ; i--) {
+            shiftDown(i);
+        }
+
     }
 
     // 返回容器大小
