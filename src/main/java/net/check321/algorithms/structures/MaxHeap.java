@@ -41,10 +41,41 @@ public class MaxHeap<T extends Comparable> {
         return this.count == 0;
     }
 
+    // 插入元素
     public void insert(T item) {
         count += 1;
         data[count] = item;
         shiftUp(count);
+    }
+
+    // 抽取最大元素
+    public T extractMax(){
+        T item = data[1];
+        commonUtils.swap(data,1,count);
+        count --;
+        shiftDown(1);
+        return item;
+    }
+
+    // shiftDown操作，将头结点移动至树合适的位置
+    private void shiftDown(int i){
+        // 还有子节点的情况：MaxHeap还存在左子节点
+        while (2 * i <= count){
+            // 待交换节点：初始化为左节点
+            int j = 2 * i;
+            // 存在右节点 && 右节点 > 左节点
+            if(j + 1 <= count && data[j+1].compareTo(data[j]) > 0){
+                // 取右节点
+                j += 1;
+            }
+
+            // 子节点小于等于父节点 符合最大堆特性
+            if(data[j].compareTo(data[i]) <= 0){
+                break;
+            }
+            commonUtils.swap(data,i,j);
+            i = j;
+        }
     }
 
 
@@ -61,7 +92,7 @@ public class MaxHeap<T extends Comparable> {
 
     public void printHeap() {
         for (int i = 1; i < data.length; i++) {
-            log.info("index:{} item: {}",i, data[i]);
+            log.info("index:{} item: {}", i, data[i]);
         }
 
     }

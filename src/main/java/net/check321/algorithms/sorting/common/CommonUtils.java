@@ -26,14 +26,15 @@ public class CommonUtils {
      *
      * @param arrs
      */
-    public void printArr(Object[] arrs,String title) {
-        log.info("-----{}-----: {}", title,(Object) arrs);
+    public void printArr(Object[] arrs, String title) {
+        log.info("-----{}-----: {}", title, (Object) arrs);
     }
 
 
     /**
      * 范围内生成随机元素且固定大小的数组 [rangeL-rangeR]
-     * @param size 数组大小
+     *
+     * @param size   数组大小
      * @param rangeL 元素左区间
      * @param rangeR 元素右区间
      * @return
@@ -56,11 +57,12 @@ public class CommonUtils {
 
     /**
      * 生成近似有序的数组
-     * @param size 数组大小
+     *
+     * @param size      数组大小
      * @param swapTimes 交换次数 该次数越大数组有序性越低
      * @return
      */
-    public Integer[] generateNearlyOrderedArrs(int size,int swapTimes){
+    public Integer[] generateNearlyOrderedArrs(int size, int swapTimes) {
 
         // 完全有序数组
         Integer[] arrs = new Integer[size];
@@ -73,7 +75,7 @@ public class CommonUtils {
             int j = (int) (Math.random() * size);
             int k = (int) (Math.random() * size);
 
-            this.swap(arrs,j,k);
+            this.swap(arrs, j, k);
         }
 
         return arrs;

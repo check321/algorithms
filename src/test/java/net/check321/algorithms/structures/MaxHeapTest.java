@@ -20,5 +20,13 @@ public class MaxHeapTest {
         }
 
         heap.printHeap();
+
+        for(int i = 0; i < capacity; i++) {
+            Integer max = heap.extractMax();
+            log.info("max: {}",max);
+        }
+
+        log.info("heap size: {}",heap.size());
+
     }
 }
