@@ -48,6 +48,10 @@ public class SortTest {
     private Sortable heapSort;
 
     @Autowired
+    @Qualifier("heapSortWithArray")
+    private Sortable heapSortWithArray;
+
+    @Autowired
     private CommonUtils commonUtils;
 
     @Test
@@ -60,6 +64,7 @@ public class SortTest {
         Integer[] randomArrs4 = Arrays.copyOf(randomArrs, randomArrs.length);
         Integer[] randomArrs5 = Arrays.copyOf(randomArrs, randomArrs.length);
         Integer[] randomArrs6 = Arrays.copyOf(randomArrs, randomArrs.length);
+        Integer[] randomArrs7 = Arrays.copyOf(randomArrs, randomArrs.length);
 
         selectionSort.sort(randomArrs3);
         insertionSort.sort(randomArrs1);
@@ -69,6 +74,8 @@ public class SortTest {
         quickSortTripleWays.sort(randomArrs5);
         shellSort.sort(randomArrs2);
         heapSort.sort(randomArrs6);
+        heapSortWithArray.sort(randomArrs7);
+
     }
 
 }
