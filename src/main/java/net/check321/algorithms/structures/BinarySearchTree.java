@@ -3,6 +3,9 @@ package net.check321.algorithms.structures;
 
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * @author check321
  * @title 二分搜索树
@@ -167,16 +170,91 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
         }
     }
 
+    /**
+     * 以当前Node节点为根前序遍历
+     */
+    public void preOrder() {
+        preOrder(root);
+    }
+
+
+    /**
+     * 中序遍历
+     */
+    public void midOrder() {
+        midOrder(root);
+    }
+
+    /**
+     * 后续遍历
+     */
+    public void postOrder() {
+        postOrder(root);
+    }
+
+    /**
+     * 层序遍历
+     */
+    public void levelOrder() {
+        // 队列
+        LinkedList<Node> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+            Node node = queue.remove();
+            log.info("node: {}", node.key);
+
+            if (null != node.left) {
+                queue.add(node.left);
+            }
+
+            if (null != node.right) {
+                queue.add(node.right);
+            }
+        }
+    }
+
+
+    private void preOrder(Node node) {
+        if (null != node) {
+            log.info("node: {}", node.key);
+            preOrder(node.left);
+            preOrder(node.right);
+        }
+    }
+
+    private void midOrder(Node node) {
+        if (null != node) {
+            midOrder(node.left);
+            log.info("node: {}", node.key);
+            midOrder(node.right);
+        }
+    }
+
+    private void postOrder(Node node) {
+        if (null != node) {
+            postOrder(node.left);
+            postOrder(node.right);
+            log.info("node: {}", node.key);
+        }
+    }
+
     public static void main(String[] args) {
 
         BinarySearchTree<Integer, String> bst = new BinarySearchTree<>();
-        bst.put(1,"one");
-        bst.put(2,"two");
-        bst.put(3,"three");
-        bst.put(4,"four");
-        bst.put(5,"five");
-        bst.put(6,"six");
+        bst.put(1, "one");
+        bst.put(2, "two");
+        bst.put(3, "three");
+        bst.put(4, "four");
+        bst.put(5, "five");
+        bst.put(6, "six");
 
-        log.info("bst result:{}",bst.get(5));
+        log.info("bst result:{}", bst.get(5));
+
+//        bst.preOrder();
+//        bst.midOrder();
+        bst.postOrder();
+//
+//        bst.levelOrder();
     }
 }
