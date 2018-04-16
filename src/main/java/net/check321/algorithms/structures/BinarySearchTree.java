@@ -214,6 +214,65 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
         }
     }
 
+    /**
+     * 删除最小元素
+     */
+    public void removeMin() {
+        if (root != null) {
+           root = removeMin(root);
+        }
+    }
+
+    /**
+     * 删除最大元素
+     */
+    public void removeMax() {
+        if (root != null) {
+            root = removeMax(root);
+        }
+    }
+
+    /**
+     * 递归到最左子节点
+     *
+     * @param node
+     * @return 删除元素后的根节点
+     */
+    private Node removeMin(Node node) {
+
+        // 最左子节点
+        if (node.left == null) {
+            Node rightNode = node.right;
+            node.right = null;
+
+            count--;
+            return rightNode;
+        }
+
+        // 继续递归到底
+        node.left = removeMin(node.left);
+        return node;
+    }
+
+    /**
+     * 递归到最右子节点
+     *
+     * @param node
+     * @return 删除元素后的根节点
+     */
+    private Node removeMax(Node node) {
+        if (null == node.right) {
+            Node leftNode = node.left;
+            node.left = null;
+            count--;
+
+            return leftNode;
+        }
+
+        node.right = removeMax(node.right);
+        return node;
+    }
+
 
     private void preOrder(Node node) {
         if (null != node) {
@@ -239,6 +298,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
         }
     }
 
+
     public static void main(String[] args) {
 
         BinarySearchTree<Integer, String> bst = new BinarySearchTree<>();
@@ -253,8 +313,11 @@ public class BinarySearchTree<K extends Comparable<K>, V> {
 
 //        bst.preOrder();
 //        bst.midOrder();
-        bst.postOrder();
+
 //
+//        bst.removeMax();
+        bst.removeMin();
 //        bst.levelOrder();
+        bst.postOrder();
     }
 }
